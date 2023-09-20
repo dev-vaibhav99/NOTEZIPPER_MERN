@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Col,
   Container,
   Form,
@@ -9,6 +8,7 @@ import {
   Navbar,
   Row,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -19,7 +19,9 @@ const Header = () => {
       className="bg-body-tertiary"
     >
       <Container>
-        <Navbar.Brand href="/">Note Zipper</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">Note Zipper </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="m-auto">
@@ -39,7 +41,9 @@ const Header = () => {
             </Form>
           </Nav>
           <Nav className="me-auto">
-            <Nav.Link href="#home">My Notes </Nav.Link>
+            <Nav.Link>
+              <Link to="/mynotes">My Notes</Link>
+            </Nav.Link>
             <NavDropdown title="Vaibhav" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
