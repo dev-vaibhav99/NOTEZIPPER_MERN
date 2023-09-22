@@ -3,10 +3,14 @@ const dotenv = require("dotenv");
 const notes = require("../backend/data/notes");
 const app = express();
 const connectDB = require("./config/db");
+const userRoutes = require("./routes/userRoutes");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 dotenv.config();
 
 connectDB();
+
+app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on PORT ${PORT}`));
@@ -19,7 +23,7 @@ app.get("/notes/all", (req, res) => {
   res.send(notes);
 });
 
-app.get("/notes/:id", (req, res) => {
-  const note = notes.find((n) => n._id === req.params.id);
-  res.send(note);
-});
+app.use("/api/users", userRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
